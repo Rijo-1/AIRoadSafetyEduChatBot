@@ -1,5 +1,163 @@
 import React, { useState, useEffect } from 'react';
 import { Groq } from 'groq-sdk';
+import styled, { createGlobalStyle } from 'styled-components';
+
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+`;
+
+const Header = styled.header`
+  width: 100%;
+  max-width: 800px;
+  height: 50px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 12px 12px 0 0;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+`;
+
+const HeaderTitle = styled.h1`
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+`;
+
+const HeaderSubtitle = styled.p`
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 0;
+`;
+
+const ChatContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: ${(props) => (props.isUser ? 'row-reverse' : 'row')};
+  align-items: center;
+  margin-bottom: 1.2rem;
+`;
+
+const MessageBubble = styled.div`
+  background-color: ${(props) => (props.isUser ? '#007bff' : '#f0f0f0')};
+  color: ${(props) => (props.isUser ? '#fff' : '#333')};
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.2rem;
+  max-width: 70%;
+  white-space: pre-wrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const InputContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+`;
+
+const Input = styled.textarea`
+  flex-grow: 1;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+  }
+`;
+
+const Button = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const ProgressContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+`;
+
+const ProgressTitle = styled.h3`
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #007bff;
+`;
+
+const ProgressText = styled.p`
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+`;
+
+const RecommendedTopicsContainer = styled.div`
+  margin-top: 1rem;
+`;
+
+const RecommendedTopicsList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const RecommendedTopicItem = styled.li`
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+`;
 
 const RoadSafetyChatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -88,7 +246,6 @@ const RoadSafetyChatbot = () => {
   };
 
   const parseQuizQuestions = (quizContent) => {
-    // Split content into individual questions
     return quizContent.split('\n')
       .filter(line => line.trim())
       .map(question => {
@@ -118,19 +275,16 @@ Please answer with A, B, C, or D.`;
     const newAnswers = [...quizState.answers, { answer, correct: isCorrect }];
     const newScore = quizState.score + (isCorrect ? 1 : 0);
 
-    // Store answer and update score
     setQuizState(prev => ({
       ...prev,
       answers: newAnswers,
       score: newScore
     }));
 
-    // Provide immediate feedback
     const feedback = `${isCorrect ? '✓ Correct!' : '✗ Incorrect.'}
 ${currentQ.explanation}`;
     setMessages(prev => [...prev, { role: 'assistant', content: feedback }]);
 
-    // Move to next question or end quiz
     if (quizState.currentQuestion < quizState.questions.length - 1) {
       setQuizState(prev => ({
         ...prev,
@@ -146,7 +300,6 @@ ${currentQ.explanation}`;
     setQuizMode(false);
     const scorePercentage = (finalScore / quizState.questions.length) * 100;
 
-    // Update module progress
     const updatedModules = {
       ...userProgress.modules,
       [currentModule]: {
@@ -158,7 +311,6 @@ ${currentQ.explanation}`;
       }
     };
 
-    // Generate personalized feedback
     const feedbackPrompt = `
     Generate personalized feedback based on quiz performance:
     Module: ${currentModule}
@@ -182,7 +334,6 @@ ${currentQ.explanation}`;
       const feedback = response.choices[0].message.content;
       setMessages(prev => [...prev, { role: 'assistant', content: feedback }]);
 
-      // Update overall progress and predictions
       updateProgressAndPredictions(updatedModules);
     } catch (error) {
       console.error('Feedback generation error:', error);
@@ -201,7 +352,6 @@ ${currentQ.explanation}`;
       .filter(m => m.attempts > 0)
       .reduce((acc, m) => acc + m.score, 0) / completedModules || 0;
 
-    // Calculate predicted final score using a weighted algorithm
     const predictedScore = calculatePredictedScore(updatedModules);
 
     setUserProgress(prev => ({
@@ -268,7 +418,6 @@ ${currentQ.explanation}`;
       }
     } else {
       try {
-        // Handle module selection
         const moduleMatch = input.match(/module\s*(\d+)/i);
         if (moduleMatch) {
           const modules = [
@@ -281,11 +430,9 @@ ${currentQ.explanation}`;
           setCurrentModule(modules[parseInt(moduleMatch[1]) - 1]);
         }
 
-        // Handle "start quiz" command
         if (input.toLowerCase().includes('start quiz')) {
           await startQuiz();
         } else {
-          // Normal conversation
           const response = await groq.chat.completions.create({
             messages: [
               { 
@@ -325,49 +472,53 @@ ${currentQ.explanation}`;
   };
 
   return (
-    <div>
-      <div style={{ height: '400px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-        {messages.map((message, index) => (
-          <div key={index} style={{ marginBottom: '10px' }}>
-            <strong>{message.role === 'user' ? 'You: ' : 'Instructor: '}</strong>
-            <pre style={{ whiteSpace: 'pre-wrap', margin: 0 }}>{message.content}</pre>
-          </div>
-        ))}
-        {loading && <div>Loading...</div>}
-      </div>
-
-      <div>
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
-          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
-          rows="3"
-          placeholder={quizMode ? "Enter A, B, C, or D" : "Type your message here..."}
-        />
-        <button onClick={handleSend} disabled={loading}>
-          Send
-        </button>
-      </div>
-
-      {userProgress.predictedScore !== null && (
-        <div style={{ marginTop: '10px', border: '1px solid #ccc', padding: '10px' }}>
-          <h3>Learning Progress Summary</h3>
-          <p>Overall Progress: {userProgress.overallProgress.toFixed(1)}%</p>
-          <p>Predicted Final Score: {userProgress.predictedScore.toFixed(1)}%</p>
-          {userProgress.recommendedTopics.length > 0 && (
-            <div>
-              <p>Recommended Focus Areas:</p>
-              <ul>
-                {userProgress.recommendedTopics.map((topic, index) => (
-                  <li key={index}>{topic}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+    <>
+      <GlobalStyle />
+      <AppContainer>
+        <Header>
+          <HeaderTitle>Road Safety Chatbot</HeaderTitle>
+          <HeaderSubtitle>Learn, Practice, and Improve Your Road Safety Knowledge</HeaderSubtitle>
+        </Header>
+        <ChatContainer>
+          {messages.map((message, index) => (
+            <MessageContainer key={index} isUser={message.role === 'user'}>
+              <MessageBubble isUser={message.role === 'user'}>
+                {message.content}
+              </MessageBubble>
+            </MessageContainer>
+          ))}
+          {loading && <div>Loading...</div>}
+        </ChatContainer>
+        <InputContainer>
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder={quizMode ? "Enter A, B, C, or D" : "Type your message here..."}
+          />
+          <Button onClick={handleSend} disabled={loading}>
+            Send
+          </Button>
+        </InputContainer>
+        {userProgress.predictedScore !== null && (
+          <ProgressContainer>
+            <ProgressTitle>Learning Progress Summary</ProgressTitle>
+            <ProgressText>Overall Progress: {userProgress.overallProgress.toFixed(1)}%</ProgressText>
+            <ProgressText>Predicted Final Score: {userProgress.predictedScore.toFixed(1)}%</ProgressText>
+            {userProgress.recommendedTopics.length > 0 && (
+              <RecommendedTopicsContainer>
+                <ProgressText>Recommended Focus Areas:</ProgressText>
+                <RecommendedTopicsList>
+                  {userProgress.recommendedTopics.map((topic, index) => (
+                    <RecommendedTopicItem key={index}>{topic}</RecommendedTopicItem>
+                  ))}
+                </RecommendedTopicsList>
+              </RecommendedTopicsContainer>
+            )}
+          </ProgressContainer>
+        )}
+      </AppContainer>
+    </>
   );
 };
 
