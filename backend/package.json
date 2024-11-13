@@ -1,0 +1,26 @@
+{
+  "name": "user-registration-and-login-api",
+  "version": "1.0.0",
+  "description": "A user authentication REST API.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Sandeep",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^6.10.0",
+    "mongoose": "^5.13.20",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
