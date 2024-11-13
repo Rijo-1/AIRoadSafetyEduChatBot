@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 // Load environment variables from .env file
 dotenv.config();
 
-const URI = process.env.MONGO_URI;
+const URI = "mongodb+srv://sand:1234@cluster1.gjlrj.mongodb.net/drivingSite?retryWrites=true&w=majority";
 
 const connectDB = async () => {
     try {

@@ -1,7 +1,5 @@
 import express from "express";
 
-const router = express.Router();
-
 // Import the user controllers
 import { loginUser } from "../controllers/login.js";
 import { registerUser } from "../controllers/register.js";
@@ -11,6 +9,8 @@ import { changePassword } from "../controllers/change-password.js";
 import { deleteUser } from "../controllers/delete.js";
 import { logoutUser } from "../controllers/logout.js";
 import { authorizedRoutes } from "../auth/auth.js";
+
+const router = express.Router();
 
 // User login endpoint
 router.post("/login", loginUser);

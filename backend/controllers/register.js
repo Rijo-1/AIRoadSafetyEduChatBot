@@ -11,7 +11,7 @@ export const registerUser = async (req, res) => {
         const isValid = await validateRegisterForm(user);
 
         if (!isValid) {
-            return res.status(400).json({ message: errorMessage() });
+            return res.status(400).json({ message: "Hi" });
         }
 
         // Hash the password

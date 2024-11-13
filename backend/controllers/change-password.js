@@ -10,7 +10,7 @@ export const changePassword = async (req, res) => {
         // Validate change password form
         const isValid = validateChangePasswordForm(userInfo);
         if (!isValid) {
-            return res.status(400).json({ message: errorMessage() });
+            return res.status(400).json({ message:  "Hello"});
         }
 
         // Logged-in user
