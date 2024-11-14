@@ -1,50 +1,50 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-// import { validateLoginForm } from '../backend/validations/users';
+import { validateLoginForm } from '../backend/validations/users';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   // Validate the login form
-    //   if (!validateLoginForm({ email, password })) {
-    //     return alert('Please check your email and password');
-    //   }
+    try {
+      // Validate the login form
+      if (!validateLoginForm({ email, password })) {
+        return alert('Please check your email and password');
+      }
 
-    //   // Send the login request to the backend
-    //   const response = await fetch('/api/login', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
+      // Send the login request to the backend
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    //   if (response.ok) {
-    //     const { user, token } = await response.json();
-    //     console.log('Logged in:', user);
+      if (response.ok) {
+        const { user, token } = await response.json();
+        console.log('Logged in:', user);
 
-    //     // Save the token in a secure cookie
-    //     document.cookie = `token=${token}; HttpOnly; Secure; SameSite=Strict`;
+        // Save the token in a secure cookie
+        document.cookie = `token=${token}; HttpOnly; Secure; SameSite=Strict`;
 
-    //     // Redirect the user to the main App.js file
-    //     setIsLoggedIn(true);
-    //     navigate('/');
-    //   } else {
-    //     const { message } = await response.json();
-    //     console.error('Login error:', message);
-    //     alert(message);
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error.message);
-    // }
+        // Redirect the user to the main App.js file
+        setIsLoggedIn(true);
+        navigate('/');
+      } else {
+        const { message } = await response.json();
+        console.error('Login error:', message);
+        alert(message);
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   return (

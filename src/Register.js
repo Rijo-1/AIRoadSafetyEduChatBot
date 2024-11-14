@@ -1,53 +1,53 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-// import { validateRegisterForm } from '../backend/validations/users';
-// import { hashPassword } from '../backend/auth/auth';
+import { validateRegisterForm } from '../backend/validations/users';
+import { hashPassword } from '../backend/auth/auth';
 
 const RegistrationPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   // Validate the registration form
-    //   const isValid = await validateRegisterForm({ name, email, password, confirmPassword });
+    try {
+      // Validate the registration form
+      const isValid = await validateRegisterForm({ name, email, password, confirmPassword });
 
-    //   if (!isValid) {
-    //     return alert('Please check your input');
-    //   }
+      if (!isValid) {
+        return alert('Please check your input');
+      }
 
-    //   // Hash the password
-    //   const hashedPassword = await hashPassword(password);
+      // Hash the password
+      const hashedPassword = await hashPassword(password);
 
-    //   // Create a new user object
-    //   const newUser = { name, email, password: hashedPassword, confirmPassword };
+      // Create a new user object
+      const newUser = { name, email, password: hashedPassword, confirmPassword };
 
-    //   // Save the user to the database (without using Axios)
-    //   const response = await fetch('/api/register', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(newUser),
-    //   });
+      // Save the user to the database (without using Axios)
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
 
-    //   if (response.ok) {
-    //     const userData = await response.json();
-    //     console.log('User registered:', userData);
-    //     // Redirect to the login page
-    //     navigate('/login');
-    //   } else {
-    //     console.error('Error registering user:', response.status);
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error.message);
-    // }
+      if (response.ok) {
+        const userData = await response.json();
+        console.log('User registered:', userData);
+        // Redirect to the login page
+        navigate('/login');
+      } else {
+        console.error('Error registering user:', response.status);
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   return (
