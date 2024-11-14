@@ -221,8 +221,8 @@ const RoadSafetyChatbot = () => {
     setQuizMode(true);
     const quizPrompt = `Generate 5 multiple-choice questions for the ${currentModule} module. 
     Consider the user's weak areas: ${userProgress.modules[currentModule]?.weakTopics.join(', ')}.
-    Make questions progressively harder and donot include quesions based on images.
-    Format: Question|Option A|Option B|Option C|Option D|Explanation`;
+    Make questions progressively harder and donot include questions based on images.
+    Format: Question|Option A|Option B|Option C|Option D`;
 
     try {
       const response = await groq.chat.completions.create({
@@ -249,8 +249,8 @@ const RoadSafetyChatbot = () => {
     return quizContent.split('\n')
       .filter(line => line.trim())
       .map(question => {
-        const [q, a, b, c, d, correct, explanation] = question.split('|').map(s => s.trim());
-        return { question: q, options: [a, b, c, d], correct, explanation };
+        const [q, a, b, c, d, explanation] = question.split('|').map(s => s.trim());
+        return { question: q, options: [a, b, c, d], explanation };
       });
   };
 
