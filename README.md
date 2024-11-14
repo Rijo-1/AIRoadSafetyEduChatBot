@@ -1,4 +1,3 @@
-Here’s an updated version of your **README**, mentioning the login and registration functionality:
 
 ---
 
@@ -93,4 +92,4 @@ Watch the project in action:
 
 ---
 
-This version now mentions the **User Registration and Login** functionality under the **Features** section. Let me know if you need any further adjustments!
+
