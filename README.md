@@ -68,8 +68,9 @@ Before running the app, ensure you have:
 ---
 
 ## 📸 **Screenshots**
-- ![Screenshot 1](./images/screenshot1.png)
-- ![Screenshot 2](./images/screenshot2.png)
+- ![User Registration](./images/screenshot1.png)
+- ![User Login](screenshot and demo/login.png)
+- ![ChatBot](screenshot and demo/login.png)
 
 ---
 
