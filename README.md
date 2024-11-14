@@ -1,70 +1,87 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+# 🚗 **AIRoadSafetyEduChatBot** 🚦
 
-### `npm start`
+## ✨ **Overview**
+**AIRoadSafetyEduChatBot** is an AI-powered, interactive educational chatbot designed to teach and reinforce road safety principles. By utilizing **React** for the frontend and **Node.js** for the backend, the chatbot delivers a personalized learning experience powered by **GroqAI API**, providing tailored content, adaptive questioning, and real-time performance feedback.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🌟 **Features**
+- **🧠 AI-Powered Content Curation**: Dynamic learning content tailored to each learner’s progress.
+- **🔄 Adaptive Questioning**: Difficulty of questions adjusts in real-time based on performance.
+- **📊 Personalized Feedback**: Immediate insights into strengths and areas for improvement.
+- **🔮 Performance Prediction**: AI model predicts learner success based on their engagement and progression.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ **Tech Stack**
+- **Frontend**: React.js
+- **Backend**: Node.js
+- **API**: GroqAI API for intelligent content and assessment
+- **Database**: (Optional, based on implementation)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ **Getting Started**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Prerequisites**
+Before running the app, ensure you have:
+- **Node.js** (version 12 or later)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Installation Steps**
 
-### `npm run eject`
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Rijo-1/AIRoadSafetyEduChatBot.git
+   ```
+2. **Install dependencies:**
+   - **Backend**:
+     ```bash
+     cd backend
+     npm install
+     ```
+   - **Frontend**:
+     ```bash
+     cd frontend
+     npm install
+     ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🚀 **Running the Application**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Start the backend server**:
+   ```bash
+   cd backend
+   npm start
+   ```
+2. **Start the frontend**:
+   ```bash
+   cd frontend
+   npm start
+   ```
+3. Open your browser and go to `http://localhost:3000` to begin interacting with the chatbot!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 📸 **Screenshots**
+- ![Screenshot 1](./images/screenshot1.png)
+- ![Screenshot 2](./images/screenshot2.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎥 **Demo Video**
+Watch the project in action:  
+[**Demo Video**](https://link_to_your_demo_video)
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 👥 **Contributors**
+- [Mohith N](https://github.com/mohithn2004)
+- [Sandeep Kumar S](https://github.com/sandyyman)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
