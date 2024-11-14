@@ -1,4 +1,4 @@
-
+Here’s an updated version of your **README**, mentioning the login and registration functionality:
 
 ---
 
@@ -14,6 +14,7 @@
 - **🔄 Adaptive Questioning**: Difficulty of questions adjusts in real-time based on performance.
 - **📊 Personalized Feedback**: Immediate insights into strengths and areas for improvement.
 - **🔮 Performance Prediction**: AI model predicts learner success based on their engagement and progression.
+- **🔐 User Registration and Login**: Secure user registration and login functionality to track progress.
 
 ---
 
@@ -69,12 +70,14 @@ Before running the app, ensure you have:
 
 ## 📸 **Screenshots**
 
-- ![User Registration](./ss/regis.png)
+- **User Registration Page**  
+  ![User Registration](./ss/regis.png)
   
-- ![User Login](./ss/login.png)
+- **User Login Page**  
+  ![User Login](./ss/login.png)
   
-- ![ChatBot](./ss/chatbot.png)
-
+- **ChatBot Interface**  
+  ![ChatBot](./ss/chatbot.png)
 
 ---
 
@@ -90,3 +93,4 @@ Watch the project in action:
 
 ---
 
+This version now mentions the **User Registration and Login** functionality under the **Features** section. Let me know if you need any further adjustments!
