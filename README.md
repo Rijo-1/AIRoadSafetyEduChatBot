@@ -1,10 +1,10 @@
 
 ---
 
-# 🚗 **AIRoadSafetyEduChatBot** 🚦
+# 🚗 **SafetySense Academy**🚦
 
 ## ✨ **Overview**
-**AIRoadSafetyEduChatBot** is an AI-powered, interactive educational chatbot designed to teach and reinforce road safety principles. By utilizing **React** for the frontend and **Node.js** for the backend, the chatbot delivers a personalized learning experience powered by **GroqAI API**, providing tailored content, adaptive questioning, and real-time performance feedback.
+**SafetySense Academy** is an AI-powered, interactive educational chatbot designed to teach and reinforce road safety principles. By utilizing **React** for the frontend and **Node.js** for the backend, the chatbot delivers a personalized learning experience powered by **GroqAI API**, providing tailored content, adaptive questioning, and real-time performance feedback.
 
 ---
 
