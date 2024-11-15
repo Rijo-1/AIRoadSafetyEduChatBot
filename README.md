@@ -56,7 +56,7 @@ Before running the app, ensure you have:
 1. **Start the backend server**:
    ```bash
    cd backend
-   npm start
+   node index.js
    ```
 2. **Start the frontend**:
    ```bash
