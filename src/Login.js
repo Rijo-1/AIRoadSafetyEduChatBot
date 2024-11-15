@@ -49,7 +49,7 @@ const LoginPage = () => {
 
   return (
     <Container>
-      <Header>AI Road Safety Bot</Header>
+      <Header>SafetySenseAcademy</Header>
       <Form onSubmit={handleSubmit}>
         <InputGroup>
           <Label htmlFor="email">Email</Label>

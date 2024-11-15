@@ -476,7 +476,7 @@ ${currentQ.explanation}`;
       <GlobalStyle />
       <AppContainer>
         <Header>
-          <HeaderTitle>Road Safety Chatbot</HeaderTitle>
+          <HeaderTitle>SafetySenseAcademy</HeaderTitle>
           <HeaderSubtitle>Learn, Practice, and Improve Your Road Safety Knowledge</HeaderSubtitle>
         </Header>
         <ChatContainer>
